@@ -9,4 +9,6 @@ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
 docker buildx use stdbuilder || docker buildx create --use --name stdbuilder
 
-docker buildx build -f "Dockerfile" -t "$DH_NAME:$1" "--platform=$PLATFORMS" . --push
+tag=`[ "$1" == latest ] && echo "$1" || echo $(echo "$1" | cut -c2-)`
+
+docker buildx build --build-arg version="$1" -f "Dockerfile" -t "$DH_NAME:$tag" "--platform=$PLATFORMS" . --push
