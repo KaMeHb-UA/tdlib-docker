@@ -11,4 +11,4 @@ docker buildx use stdbuilder || docker buildx create --use --name stdbuilder
 
 tag=`[ "$1" == latest ] && echo "$1" || echo $(echo "$1" | cut -c2-)`
 
-docker buildx build --build-arg version="$1" -f "Dockerfile" -t "$DH_NAME:$tag" "--platform=$PLATFORMS" . --push
+docker buildx build --build-arg version="$1" -f "Dockerfile" -t "$DH_NAME:$tag" -t "$DH_NAME:latest" "--platform=$PLATFORMS" . --push
