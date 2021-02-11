@@ -2,7 +2,7 @@ FROM alpine as builder
 
 ARG version=latest
 
-RUN apk add --no-cache git make cmake gcc g++ gperf zlib-dev openssl-dev
+RUN apk add --no-cache git make cmake gcc g++ gperf zlib-dev openssl-dev linux-headers
 
 RUN git clone git://github.com/tdlib/td.git /tdlib
 
